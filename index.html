@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio – 강승주</title>
+  <meta name="description" content="강승주 포트폴리오" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- (선택) fancyapps 필요 시 head 안/또는 body 끝에 로딩 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+  <script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header container">
+    <div class="brand">KANGSEUNGJU</div>
+    <nav class="site-nav">
+      <a href="#about">Profile</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" aria-label="테마 전환">●</button>
+    </nav>
+    <div class="title">DESIGN PORTFOLIO</div>
+  </header>
+
+  <!-- Main Grid -->
+  <main class="container grid" id="about" aria-label="Profile Grid">
+    <!-- 사진 -->
+    <section class="cell photo" aria-label="사진">
+      <img src="images/강승주.png" alt="프로필 사진" />
+    </section>
+
+    <!-- 프로필 -->
+    <section class="cell profile">
+      <h2>Profile</h2>
+      <p>
+        스토리를 영상으로 풀어내는 영상편집자 강승주입니다.<br/>
+        한 장면, 한 컷에도 진심을 담아 사람들의 마음을 움직이고자 합니다.<br/>
+        창의성과 꾸준한 성장을 통해 깊이 있는 영상을 만들어가겠습니다.
+      </p>
+    </section>
+
+    <!-- 캐릭터 -->
+    <section class="cell character">
+      <h3>Character</h3>
+      <p>
+        열정 넘치는, 긍정적인, 도전하는<br/>
+        포기하지 않는, 유연한, 그리고 단단함<br/>
+        리더십 있는, 지속적인 성장, 끊임없는 소통
+      </p>
+    </section>
+
+    <!-- Certificates -->
+    <section class="cell certificates">
+      <h3>Certificates</h3>
+      <ul class="timeline">
+        <li>
+          <span class="time">2025.08</span>
+          <span class="role">
+            GTQ그래픽기술자격 1급
+            <em>한국생산성본부</em>
+          </span>
+        </li>
+        <li>
+          <span class="time">2021.01</span>
+          <span class="role">
+            2종보통 운전면허
+            <em>경찰청(도로교통공단)</em>
+          </span>
+        </li>
+        <li>
+          <span class="time">2013.10</span>
+          <span class="role">
+            ITQ 아래한글 A등급
+            <em>한국생산성본부</em>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 이름/생일/연락 -->
+    <section class="cell idblock">
+      <div class="id-head">
+        <h3>강승주</h3>
+        <span class="birth">2001. 09. 26</span>
+      </div>
+      <ul class="contact">
+        <li><b>Phone.</b> 010.5456.4985</li>
+        <li><b>Email.</b> <a class="email-link" href="mailto:loveksjuyo@gmail.com">loveksjuyo@gmail.com</a></li>
+        <li><b>Address.</b> 수성구 두산동 상화로112</li>
+      </ul>
+    </section>
+
+    <!-- Tools -->
+    <section class="cell tools">
+      <h3>Tools</h3>
+      <p>Premiere Pro, After Effects, Blender, Photoshop, Illustrator</p>
+      <div class="tools-icons">
+        <img src="images/premiere-pro.png" alt="Premiere Pro">
+        <img src="images/after-effects.png" alt="After Effects">
+        <img src="images/photoshop.png" alt="Photoshop">
+        <img src="images/illustrator.png" alt="Illustrator">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" alt="Blender">
+      </div>
+    </section>
+
+    <!-- 학력 -->
+    <section class="cell edu">
+      <h3>Education</h3>
+      <ul class="timeline">
+        <li><span class="time">2022.02</span><span class="role">수성대학교 스포츠레저과<em>졸업</em></span></li>
+        <li><span class="time">2020.03</span><span class="role">수성대학교 스포츠레저과<em>입학</em></span></li>
+        <li><span class="time">2020.02</span><span class="role">청원고등학교 예체능과<em>졸업</em></span></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Works -->
+  <section class="container works" id="works" aria-labelledby="works-title">
+    <div class="divider" aria-hidden="true"></div>
+    <div class="works-head">
+      <h2 id="works-title">Works</h2>
+      <p class="muted">쇼츠 편집 · 3D 그래픽 · Fake 3D </p>
+    </div>
+    
+    <div class="works-grid">
+      <!-- ⬇️ data-video: 좌클릭은 모달, Ctrl/⌘/중클릭은 새 탭 -->
+      <a class="work-card" href="#" data-video="https://youtu.be/r7Wn-BJ4J9M?si=QbC65clgjaVC7mwB">
+        <div class="thumb"></div>
+        <div class="meta"><strong>Interview</strong><span>인터뷰 영상</span></div>
+      </a>
+
+      <a class="work-card" href="#" data-video="https://youtu.be/SZJvP69qr8U">
+        <div class="thumb"></div>
+        <div class="meta"><strong>WorkFlow</strong><span>Head Rig 영상</span></div>
+      </a>
+
+      <a class="work-card" href="#" data-video="https://youtube.com/shorts/3tkONKzjb7M?si=Xf-MNMdUyu2vKxae">
+        <div class="thumb"></div>
+        <div class="meta"><strong>YouTube Shorts</strong><span>위클리K 쇼츠 제작</span></div>
+      </a>
+
+      <a class="work-card" href="#" data-video="https://youtu.be/79h9POdaVTU">
+        <div class="thumb"></div>
+        <div class="meta"><strong>Sunglasses_Ad</strong><span>선글라스 광고 영상</span></div>
+      </a>
+
+      <!-- detail 전용 카드(새 탭) + 수동 썸네일(data-thumb) -->
+      <a class="work-card" href="#" data-thumb="images/asd.png" data-detail="detail-sunglasses.html">
+        <div class="thumb"></div>
+        <div class="meta"><strong>Detail Page</strong><span>상세페이지</span></div>
+      </a>
+
+      <a class="work-card" href="#" data-video="https://youtu.be/sizsiGXazfo">
+        <div class="thumb"></div>
+        <div class="meta"><strong>Wedding Editing</strong><span>웨딩 편집 영상</span></div>
+      </a>
+
+      <a class="work-card" href="#" data-video="https://youtu.be/yTl8UQ12wh8">
+        <div class="thumb"></div>
+        <div class="meta"><strong>Fake 3D</strong><span>Fake 3D 모션 영상</span></div>
+      </a>
+
+      <a class="work-card" href="#" data-video="https://youtu.be/jSxveWQDuGE">
+        <div class="thumb"></div>
+        <div class="meta"><strong>Typographic Copy</strong><span>타이포 카피 영상</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer container" id="contact">
+    <div class="divider" aria-hidden="true"></div>
+    <h2>Contact</h2>
+    <ul class="contact-inline">
+      <li><a href="mailto:loveksjuyo@gmail.com">loveksjuyo@gmail.com</a></li>
+      <li><a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://open.kakao.com/o/spz08prh" target="_blank" rel="noopener">KakaoTalk</a></li>
+      <li><a href="https://www.instagram.com/7.v_ok_/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+    <p class="copy">© 2025 KANG SEUNGJU. All rights reserved.</p>
+  </footer>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video player">
+    <div class="video-backdrop" data-close></div>
+    <div class="video-dialog">
+      <button class="video-close" type="button" data-close aria-label="닫기">✕</button>
+      <div class="video-frame-wrap">
+        <iframe id="videoFrame" title="YouTube video player"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

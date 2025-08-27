@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sunglasses Detail Page</title>
+<meta name="description" content="선글라스 상세페이지" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/detail.css">
+</head>
+
+<body>
+<header>
+  <div class="bar">
+    <h1>Detail Page</h1>
+    <span class="muted">Sunglasses</span>
+
+    <nav class="toc" aria-label="Page shortcuts">
+      <a href="#p-main-title">Title</a>
+      <a href="#p-view">View</a>
+      <a href="#p-information">Information</a>
+      <a href="#p-technology">Technology</a>
+      <a href="#p-sun-image">Image</a>
+      <a href="#p-policy">Policy</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article class="page" id="top">
+    <div class="title" id="p-main-title">
+      <img src="images/1메인타이틀.png" alt="Detail long page hero" loading="lazy">
+    </div>
+    <div class="title" id="p-view">
+      <img src="images/123.gif" alt="Detail long page hero" loading="lazy">
+    </div>
+    <div class="title" id="p-information">
+      <img src="images/3상품 요약.png" alt="Detail long page hero" loading="lazy">
+    </div>
+    <div class="title" id="p-technology">
+      <img src="images/4상세정보.png" alt="Detail long page hero" loading="lazy">
+    </div>
+    <div class="title" id="p-sun-image">
+      <img src="images/5착용 사진.png" alt="Detail long page hero" loading="lazy">
+    </div>
+    <div class="title" id="p-policy">
+      <img src="images/6환불 규정, 예시.png" alt="Detail long page hero" loading="lazy">
+    </div>
+    <footer>© 2025 KANG SEUNGJU</footer>
+  </article>
+</main>
+
+<!-- 알약형 TOP 버튼 -->
+<button id="toTop" class="top-btn pill" aria-label="맨 위로 이동"><span>TOP</span></button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ── 상단 TOC 활성화 표시
+  const links = [...document.querySelectorAll('.toc a')];
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if(!visible) return;
+    const id = '#'+visible.target.id;
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: [0, .25, .5, .75, 1] });
+
+  sections.forEach(sec => io.observe(sec));
+
+  // ── TOP 버튼 노출/동작
+  const topBtn = document.getElementById('toTop');
+  const showAt = 300; // px 이상 스크롤되면 보이기
+
+  function toggleTopBtn(){
+    if (window.scrollY > showAt) topBtn.classList.add('show');
+    else topBtn.classList.remove('show');
+  }
+  window.addEventListener('scroll', toggleTopBtn, { passive: true });
+  toggleTopBtn();
+
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
