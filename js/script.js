@@ -1,69 +1,79 @@
 // js/script.js
-
-// 모든 코드 DOM 로드 후 실행
 document.addEventListener('DOMContentLoaded', () => {
-  /* ───────────────── Theme toggle ───────────────── */
-// ── Theme toggle ─────────────────────────────────────
-const btn = document.querySelector('.theme-toggle');
-btn?.addEventListener('click', () => {
-  const isDark = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() === '#0A0B0D';
+  /* ───────── Theme(팔레트) + Video 전환 ───────── */
 
-// 팔레트 (네가 올린 버전 그대로 예시)
-const light = {
-  '--bg':'#F6F7FB',
-  '--surface':'#FFFFFF',
-  '--surface-2':'#F2F4F7',
-  '--text':'#0B1220',
-  '--muted':'#667085',
-  '--line':'rgba(0,0,0,.12)',
-  '--accent':'#2563EB',
+  // 팔레트(현재 CSS는 다크가 기본이라 JS로 라이트 팔레트 주입)
+  const light = {
+    '--bg':'#F6F7FB',
+    '--surface':'#FFFFFF',
+    '--surface-2':'#F2F4F7',
+    '--text':'#0B1220',
+    '--muted':'#667085',
+    '--line':'rgba(0,0,0,.12)',
+    '--accent':'#2563EB',
+    '--header-glass':'#EDF4FF',
+    '--header-glass-strong':'#DCE9FA',
+    '--header-blur':'none',
+    '--header-shadow':'none'
+  };
 
-  // ⬇️ 라이트: 본문과 동일, 유리/그림자 OFF
-  '--header-glass':'#EDF4FF',
-  '--header-glass-strong':'#DCE9FA',
-  '--header-blur':'none',
-  '--header-shadow':'none'
-};
+  const dark = {
+    '--bg':'#0A0B0D',
+    '--surface':'#0E1013',
+    '--surface-2':'#0B0C10',
+    '--text':'#ECEFF3',
+    '--muted':'#A2A9B2',
+    '--line':'rgba(255,255,255,.18)',
+    '--accent':'#86C7FF',
+    '--header-glass':'rgba(10,11,13,.75)',
+    '--header-glass-strong':'rgba(10,11,13,.85)',
+    '--header-blur':'saturate(120%) blur(6px)',
+    '--header-shadow':'0 6px 16px rgba(0,0,0,.28)'
+  };
 
-const dark = {
-  '--bg':'#0A0B0D',
-  '--surface':'#0E1013',
-  '--surface-2':'#0B0C10',
-  '--text':'#ECEFF3',
-  '--muted':'#A2A9B2',
-  '--line':'rgba(255,255,255,.18)',
-  '--accent':'#86C7FF',
+  const applyThemeVars = (vars) => {
+    Object.entries(vars).forEach(([k, v]) =>
+      document.documentElement.style.setProperty(k, v)
+    );
+  };
 
-  // ⬇️ 다크: 살짝 유리감 + 그림자 ON
-  '--header-glass':'rgba(10,11,13,.75)',
-  '--header-glass-strong':'rgba(10,11,13,.85)',
-  '--header-blur':'saturate(120%) blur(6px)',
-  '--header-shadow':'0 6px 16px rgba(0,0,0,.28)'
-};
+  // 비디오 엘리먼트
+  const vLight = document.querySelector('.video-light');
+  const vDark  = document.querySelector('.video-dark');
 
-// 공통 적용 함수
-function applyTheme(vars){
-  Object.entries(vars).forEach(([k,v]) =>
-    document.documentElement.style.setProperty(k, v)
-  );
-}
+  // 보여줄 비디오만 재생, 나머지는 멈춤
+  const showLight = () => {
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
+    applyThemeVars(light);
+    vDark?.pause(); if (vDark) vDark.currentTime = 0;
+    vLight?.play();
+  };
+  const showDark = () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.add('dark-mode');
+    applyThemeVars(dark);
+    vLight?.pause(); if (vLight) vLight.currentTime = 0;
+    vDark?.play();
+  };
 
-// 토글 (현재 다크인지 라이트인지 체크해서 전환)
-const btn = document.querySelector('.theme-toggle');
-btn?.addEventListener('click', () => {
-  const currentBg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
-  const isDark = currentBg === '#0A0B0D';
-  applyTheme(isDark ? light : dark);
-});
+  // 초기 모드: OS 설정을 따르되, CSS 기본이 다크라서 그대로 두어도 됨.
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (!document.body.classList.contains('light-mode') &&
+      !document.body.classList.contains('dark-mode')) {
+    prefersDark ? showDark() : showLight();
+  }
 
-// 페이지 첫 로드 상태가 다크라면(지금 네 CSS 기본이 다크) 아래 줄은 선택 사항
-// applyTheme(dark);
+  // 토글 버튼
+  const btn = document.querySelector('.theme-toggle');
+  btn?.addEventListener('click', () => {
+    if (document.body.classList.contains('light-mode')) showDark();
+    else showLight();
+  });
 
-});
+  /* ───────── 아래부터 너가 쓰던 코드 그대로 유지 ───────── */
 
-
-
-  /* ───────────────── Sticky header ──────────────── */
+  /* Sticky header */
   const header = document.querySelector('.site-header');
   if (header) {
     const sentinel = document.createElement('div');
@@ -78,14 +88,11 @@ btn?.addEventListener('click', () => {
     }, { threshold: 0 }).observe(sentinel);
   }
 
-  /* ───────────────── Smooth scroll ──────────────── */
+  /* Smooth scroll */
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
-
-    // 모달로 여는 카드(=data-video)는 스크롤 막음
-    if (a.matches('.work-card[data-video]')) return;
-
+    if (a.matches('.work-card[data-video]')) return; // 모달 링크 예외
     const id = a.getAttribute('href');
     if (id && id.length > 1) {
       e.preventDefault();
@@ -93,22 +100,20 @@ btn?.addEventListener('click', () => {
     }
   });
 
-  /* ───────────────── Lightbox Video ─────────────── */
+  /* Video modal (네 코드 그대로) */
   const modal  = document.getElementById('videoModal');
   const iframe = document.getElementById('videoFrame');
 
   const extractYouTubeID = (input) => {
     if (!input) return '';
-    if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input; // 이미 ID
+    if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
     try {
       const u = new URL(input);
       const v = u.searchParams.get('v');
-      if (v) return v;                       // ...watch?v=ID
+      if (v) return v;
       const parts = u.pathname.split('/').filter(Boolean);
-      return parts.pop() || '';              // youtu.be/ID /shorts/ID /embed/ID
-    } catch {
-      return input;
-    }
+      return parts.pop() || '';
+    } catch { return input; }
   };
 
   const openVideo = (idOrUrl) => {
@@ -127,37 +132,27 @@ btn?.addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
   };
 
-  // 카드 클릭: 좌클릭=모달/상세, ⌘/Ctrl/중클릭=새 탭
   document.addEventListener('click', (e) => {
     const card = e.target.closest('.work-card');
     if (!card) return;
-
     const video  = card.getAttribute('data-video');
     const detail = card.getAttribute('data-detail');
-
-    // Ctrl/⌘ 클릭은 새 탭
     if (e.ctrlKey || e.metaKey) {
       if (detail) window.open(detail, '_blank', 'noopener');
       else if (video) window.open(video,  '_blank', 'noopener');
       return;
     }
-
     if (video || detail) {
       e.preventDefault();
-      if (detail) {
-        window.open(detail, '_blank', 'noopener');
-      } else if (video) {
-        openVideo(video);
-      }
+      if (detail) window.open(detail, '_blank', 'noopener');
+      else if (video) openVideo(video);
     }
   });
 
-  // 중클릭(휠 클릭) 새 탭
   document.addEventListener('auxclick', (e) => {
     if (e.button !== 1) return;
     const card = e.target.closest('.work-card');
     if (!card) return;
-
     const video  = card.getAttribute('data-video');
     const detail = card.getAttribute('data-detail');
     e.preventDefault();
@@ -165,7 +160,6 @@ btn?.addEventListener('click', () => {
     else if (video) window.open(video,   '_blank', 'noopener');
   });
 
-  // 닫기(배경/X/ESC)
   modal?.addEventListener('click', (e) => {
     if (e.target.hasAttribute('data-close')) closeVideo();
   });
@@ -173,13 +167,12 @@ btn?.addEventListener('click', () => {
     if (e.key === 'Escape' && modal?.classList.contains('open')) closeVideo();
   });
 
-  /* ─────────────── YouTube 썸네일 자동 주입 ───────── */
+  // 썸네일 주입
   const ytThumbURLs = (id) => ([
     `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
     `https://i.ytimg.com/vi/${id}/sddefault.jpg`,
     `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
   ]);
-
   const setThumbBackground = (elem, urls) => {
     const img = new Image();
     let i = 0;
@@ -187,14 +180,10 @@ btn?.addEventListener('click', () => {
     img.onerror = () => { i += 1; if (i < urls.length) img.src = urls[i]; };
     img.src = urls[i];
   };
-
   document.querySelectorAll('.work-card .thumb').forEach(thumb => {
     const card   = thumb.closest('.work-card');
     const manual = card?.getAttribute('data-thumb');
-    if (manual) {            // 수동 썸네일 우선
-      thumb.style.backgroundImage = `url("${manual}")`;
-      return;
-    }
+    if (manual) { thumb.style.backgroundImage = `url("${manual}")`; return; }
     const raw = card?.getAttribute('data-video');
     if (!raw) return;
     const id = extractYouTubeID(raw);
@@ -202,3 +191,70 @@ btn?.addEventListener('click', () => {
     setThumbBackground(thumb, ytThumbURLs(id));
   });
 });
+// ── Hero 비디오: 보이면 재생, 사라지면 멈추고 처음으로 ─────────────────
+(() => {
+  const videos = document.querySelectorAll('.hero-frame .video');
+
+  // 접근성: 모션 줄임 선호 시 재생 안 함
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 현재 테마에 맞는 비디오만 활성화
+  function activeVideo() {
+    const dark = document.body.classList.contains('dark-mode');
+    return [...videos].find(v => (dark ? v.classList.contains('video-dark')
+                                       : v.classList.contains('video-light')));
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    if (reduceMotion) return;
+
+    entries.forEach(entry => {
+      const v = entry.target;
+      const isActive = v === activeVideo();
+
+      if (!isActive) { // 숨김 영상은 항상 정지 & 0으로
+        v.pause();
+        v.currentTime = 0;
+        return;
+      }
+
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+        // 화면에 충분히 들어오면 처음부터 재생
+        try {
+          v.currentTime = 0;
+          v.play();
+        } catch(_) {}
+      } else {
+        // 벗어나면 멈추고 다시 처음으로
+        v.pause();
+        v.currentTime = 0;
+      }
+    });
+  }, { threshold: [0, .6, 1] });
+
+  videos.forEach(v => {
+    // 영상 끝나면 그 프레임에 멈추고(깜빡임 방지), 다음에 다시 들어오면 0에서 재생
+    v.loop = false;
+    v.addEventListener('ended', () => {
+      v.pause();
+      // 마지막 프레임 유지 (표시용), 다시 들어오면 위 로직이 0으로 되감아줌
+    });
+    io.observe(v);
+  });
+
+  // 테마 바뀔 때: 이전 영상 멈추고 0으로, 새 영상은 처음부터 play
+  const togglePlayForTheme = () => {
+    const cur = activeVideo();
+    videos.forEach(v => {
+      if (v !== cur) { v.pause(); v.currentTime = 0; }
+    });
+    if (!reduceMotion && cur) {
+      try { cur.currentTime = 0; cur.play(); } catch(_) {}
+    }
+  };
+
+  // 기존 토글 버튼에 이미 리스너가 있다면, 토글 직후에 이것만 한 줄 호출해 주세요.
+  // 예: applyTheme(...) 다음 줄에:
+  // togglePlayForTheme();
+  window._heroTogglePlayForTheme = togglePlayForTheme; // 필요시 외부에서 호출할 수 있게
+})();

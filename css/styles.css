@@ -66,6 +66,32 @@ body{
 .site-nav a:hover{color:var(--text);}
 .theme-toggle{border:1px solid var(--line);background:transparent;color:var(--muted);width:26px;height:26px;border-radius:50%;cursor:pointer;}
 
+/* HERO 레이아웃(옵션 2) */
+.hero { margin: 0 0 48px; }
+.hero-frame{
+  position: relative;
+  width: 100%;
+  max-width: 1920px;      /* 원본 이상 확대 방지 */
+  aspect-ratio: 16 / 9;   /* 1920×1080 유지 */
+  margin: 0 auto;         /* 중앙정렬 */
+  padding: 0 40px;        /* 좌우 여백 */
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: 12px;
+}
+.hero-frame .video{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* 잘리지 않게 */
+  object-position: center;
+  display: none;           /* ← 핵심: 기본 숨김 */
+}
+body.light-mode .video-light{ display: block; }
+body.light-mode .video-dark { display: none;  }
+body.dark-mode  .video-dark { display: block; }
+body.dark-mode  .video-light{ display: none;  }
+
 /* Grid */  
 .grid{
   min-height:calc(100vh - var(--header-offset));
