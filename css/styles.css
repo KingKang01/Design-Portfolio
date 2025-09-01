@@ -66,31 +66,33 @@ body{
 .site-nav a:hover{color:var(--text);}
 .theme-toggle{border:1px solid var(--line);background:transparent;color:var(--muted);width:26px;height:26px;border-radius:50%;cursor:pointer;}
 
-/* HERO 레이아웃(옵션 2) */
+/* HERO 레이아웃 */
 .hero { margin: 0 0 48px; }
 .hero-frame{
   position: relative;
   width: 100%;
-  max-width: 1920px;      /* 원본 이상 확대 방지 */
-  aspect-ratio: 16 / 9;   /* 1920×1080 유지 */
-  margin: 0 auto;         /* 중앙정렬 */
-  padding: 0 40px;        /* 좌우 여백 */
+  max-width: 1920px;         
+  aspect-ratio: 16 / 9;      
+  margin: 0 auto;           
+  padding: 0 40px;         
   box-sizing: border-box;
   overflow: hidden;
   background: var(--surface-2);
   border-radius: 12px;
 }
-.hero-frame .video{
+.hero-frame img {
   width: 100%;
   height: 100%;
-  object-fit: contain;     /* 잘리지 않게 */
-  object-position: center;
-  display: none;           /* ← 핵심: 기본 숨김 */
+  object-fit: cover;
+  border-radius: 12px;
+  display: none; 
 }
-body.light-mode .video-light{ display: block; }
-body.light-mode .video-dark { display: none;  }
-body.dark-mode  .video-dark { display: block; }
-body.dark-mode  .video-light{ display: none;  }
+
+body.light-mode .photo-light { display: block; }
+body.light-mode .photo-dark  { display: none;  }
+
+body.dark-mode  .photo-dark  { display: block; }
+body.dark-mode  .photo-light { display: none;  }
 
 /* Grid */  
 .grid{
@@ -181,7 +183,7 @@ a:hover{border-bottom-color:var(--accent);}
 
 /* Footer */
 .site-footer{padding:18px 0 40px;}
-.site-footer h2{font-size:24px;margin:0 0 8px;}
+.site-footer h2{font-size:24px;margin:10px 0 8px;}
 .contact-inline{list-style:none;padding:0;margin:10px 0;display:flex;gap:14px;flex-wrap:wrap;}
 .copy{color:var(--muted);font-size:14px;}
 
