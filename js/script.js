@@ -195,3 +195,26 @@ document.addEventListener('click', (e) => {
   const link = card.getAttribute('data-detail');
   window.open(link, '_blank', 'noopener');
 });
+// 상세 페이지(기획/성과) 카드: 새 탭 열기
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.work-card[data-detail]');
+  if (!card) return;
+  e.preventDefault();
+  const url = card.getAttribute('data-detail');
+  if (!url) return;
+  window.open(url, '_blank', 'noopener');
+});
+
+// 이미지 라이트박스 바인딩 (v5)
+Fancybox.bind('[data-fancybox="wk-shorts"]', {
+  dragToClose: false,
+  backdropClick: 'close',
+  Hash: false,                 // 주소창 해시 비활성화(원하면 true)
+  Thumbs: { autoStart: false },
+  Toolbar: { display: ["close"] },
+  Images: { zoom: true },      // 더블클릭(모바일 핀치)로 확대
+  compact: false,              // 중앙 크게
+});
+Fancybox.bind("[data-fancybox]", {
+  closeButton: "inside",  // 닫기 버튼을 팝업 안쪽에 표시
+});

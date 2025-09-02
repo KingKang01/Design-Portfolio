@@ -206,3 +206,94 @@ a:hover{border-bottom-color:var(--accent);}
 .back-to-top:hover{background:rgba(255,255,255,.18);}
 .back-to-top.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
 @media (max-width:560px){.back-to-top{right:14px;bottom:14px;width:50px;height:50%;}}
+
+.shorts-gallery { padding-block: 18px 6px; }
+.shorts-gallery h2 { margin: 0 0 12px; font-size: 24px; }
+
+/* ==== 기획 & 레퍼런스(Shorts) 그리드 튜닝 ==== */
+.shorts-gallery.container {           /* 섹션 자체 여백/중앙정렬 보강 */
+  max-width: 1200px;                  /* 그리드가 너무 넓게 퍼지지 않도록 상한 */
+  margin: 0 auto;
+}
+
+.shorts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));  /* 항상 3열 기준 */
+  gap: 24px;                           /* 카드 간격 */
+  align-items: start;
+}
+
+/* 카드(링크) 스타일 */
+.shorts-grid a {
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+/* 썸네일 사이즈 일관성: 16:9 비율 박스 안에 이미지 채우기 */
+.shorts-grid a > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;    /* 비율 고정 */
+  object-fit: cover;       /* 잘라서 꽉 채우기 */
+}
+
+/* 호버 효과 */
+.shorts-grid a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+  border-color: rgba(255,255,255,.25);
+}
+
+/* 반응형: 화면이 좁아질 때는 2열/1열로 자연스럽게 줄이기 */
+@media (max-width: 1100px) {
+  .shorts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .shorts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.action-row{
+  display:flex;
+  justify-content:center;
+  margin: 14px 0 26px;   /* 대표 이미지 바로 아래 간격 */
+}
+
+.btn-youtube{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 12px 18px;
+  background:#ff0033;         /* 유튜브 레드 */
+  color:#fff;
+  font-weight:800;
+  border-radius:12px;
+  text-decoration:none;
+  letter-spacing:.02em;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: 0 6px 18px rgba(255,0,51,.22);
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease, opacity .12s ease;
+}
+
+.btn-youtube:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(255,0,51,.28);
+  background:#e0002e;
+}
+
+.btn-youtube svg{
+  display:block;
+}
+@media (max-width:560px){
+  .btn-youtube{
+    width:100%;
+    justify-content:center;
+    border-radius:14px;
+  }
+}

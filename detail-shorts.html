@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YouTube Shorts – 작업 개요</title>
+
+  <!-- 폰트(메인과 동일) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+
+  <style>
+    /* 상세 페이지 전용) 필요 최소한 커스텀 */
+    .detail-wrap{max-width:1100px;width:92vw;margin:32px auto 60px;}
+.detail-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #101217;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.detail-hero img {
+  max-width: 100%;      /* 가로는 컨테이너 크기 넘지 않게 */
+  max-height: 400px;    /* 세로 크기 제한 (원하는 높이값으로 조정) */
+  height: auto;         /* 비율 유지 */
+  width: auto;          /* 비율 유지 */
+  border-radius: 12px;
+}
+    .detail-head h1{font:900 32px/1.2 "Noto Sans KR", Inter, sans-serif;margin:0;}
+    .detail-head .muted{font-weight:700;color:var(--muted)}
+    .kpis{display:grid;gap:12px;margin:0 0 28px}
+    @media (min-width:760px){.kpis{grid-template-columns:repeat(4,1fr);}}
+    .kpi{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:14px;text-align:center}
+    .kpi strong{display:block;font-size:20px;font-weight:900}
+    .gallery{display:grid;gap:12px;margin:12px 0 26px}
+    @media (min-width:760px){.gallery{grid-template-columns:repeat(3,1fr);}}
+    .gallery img{width:100%;display:block;border-radius:12px;border:1px solid var(--line);background:#000}
+    .table{width:100%;border-collapse:separate;border-spacing:0;margin-top:6px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .table th,.table td{padding:12px 14px;border-bottom:1px solid var(--line)}
+    .table th{background:var(--surface-2);text-align:left;font-weight:800}
+    .table tr:last-child td{border-bottom:0}
+    .backline{display:inline-flex;gap:8px;align-items:center;margin-top:16px;color:var(--accent);font-weight:800;text-decoration:none}
+  </style>
+</head>
+<body>
+  <!-- 헤더(메인과 동일) -->
+  <header class="site-header container">
+    <div class="brand">KANGSEUNGJU</div>
+    <div class="title">YOUTUBE SHORTS</div>
+  </header>
+
+  <main class="detail-wrap">
+  <div class="detail-hero">
+  <img src="images/쇼츠프로필.png" alt="WK 로고">
+</div>
+<div class="action-row">
+  <a href="https://youtube.com/@WK-N1" target="_blank" rel="noopener" class="btn-youtube">
+    <!-- 아이콘은 SVG라 이미지 파일 없이 바로 사용 가능 -->
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41.6 41.6 0 0 0 0 12c0 1.9.1 3.8.5 5.8a4 4 0 0 0 2.8 2.8C4.9 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8c.3-2 .5-3.9.5-5.8 0-1.9-.2-3.8-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/>
+    </svg>
+    유튜브 채널 바로가기
+  </a>
+</div>
+    <div class="detail-head">
+      <h1>YouTube Shorts 기획 & 운영</h1>
+      <span class="muted">기간: 2025.07 – 2025.09</span>
+    </div>
+
+    <section class="kpis">
+      <div class="kpi"><strong>1.3만+</strong>누적 조회수</div>
+      <div class="kpi"><strong>51.8%</strong>평균 조회 유지율</div>
+      <div class="kpi"><strong>+16</strong>구독/팔로우 증가</div>
+      <div class="kpi"><strong>9개</strong>총 제작 개수</div>
+    </section>
+
+    <h3>핵심 전략</h3>
+    <ul class="timeline">
+      <li><span class="time">Hook</span><span class="role">인트로로 채널과 내용 설명</span></li>
+      <li><span class="time">Pacing</span><span class="role">빠르게 선수들의 주간 기록과 순위 설명</span></li>
+      <li><span class="time">Packaging</span><span class="role">세로 구도 최적화, 1-2단어 키워드 자막, 고대비 썸네일</span></li>
+    </ul>
+
+<h3 style="margin-top:22px">대표 결과</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>제목</th><th>길이</th><th>조회수</th><th>업로드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="https://youtube.com/shorts/ecrA-BKvQ6Y?si=xBThaZbDShfSpENB" target="_blank">
+          8월 5주차 | 이번 주 KBO 리그 핵심요약⚾
+        </a>
+      </td>
+      <td>1:12</td>
+      <td>4,961</td>
+      <td>2025-09-01</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://youtube.com/shorts/3tkONKzjb7M?si=T1B3HdvvLF8UZECT" target="_blank">
+          8월 3주차 | 이번 주 KBO 리그 핵심요약⚾
+        </a>
+      </td>
+      <td>1:15</td>
+      <td>2,089</td>
+      <td>2025-08-18</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://youtube.com/shorts/DIxciQAuyrI?si=5S9bMGD0s8znCCWW" target="_blank">
+          확실한 전역신고! 두산베어스 안재석⚾
+        </a>
+      </td>
+      <td>0:31</td>
+      <td>1,775</td>
+      <td>2025-08-21</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<section class="container shorts-gallery" id="shorts-gallery">
+<h2>기획 & 레퍼런스</h2>
+
+<div class="shorts-grid">
+<a href="images/쇼츠 기획.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/쇼츠 기획.png" alt="유튜브 쇼츠 기획서" />
+</a>
+<a href="images/채널 구성.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/채널 구성.png" alt="유튜브 쇼츠 기획서" />
+</a>
+<a href="images/채널 구성2.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/채널 구성2.png" alt="유튜브 쇼츠 기획서" />
+</a>
+<a href="images/래퍼런스.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/래퍼런스.png" alt="유튜브 쇼츠 기획서" />
+</a>
+<a href="images/영상 구성.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/영상 구성.png" alt="유튜브 쇼츠 기획서" />
+</a>
+</div>
+</section>
+<section class="container shorts-gallery" id="shorts-gallery">
+<h2>채널 성장 과정</h2>
+
+<div class="shorts-grid">
+<a href="images/조회수.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/조회수.png" alt="유튜브 쇼츠 기획서" />
+</a>
+<a href="images/전체.png" 
+data-fancybox="wk-shorts" 
+data-caption="유튜브 쇼츠 기획서">
+<img src="images/전체.png" alt="유튜브 쇼츠 기획서" />
+</a>
+</div>
+</section>
+
+<a class="backline" href="index.html#works">← Works로 돌아가기</a>
+</main>
+
+<!-- 메인 JS 재사용 (테마/헤더 등) -->
+<script src="js/script.js"></script>
+
+<!-- body 맨 마지막 -->
+<script>
+  Fancybox.bind("[data-fancybox='wk-shorts']", {
+    Toolbar: {
+      display: ["close"], // 닫기 버튼 보이게
+    },
+    backdropClick: "close", // 배경 클릭 시 닫기
+    dragToClose: true,      // 모바일 드래그 닫기
+  });
+</script>
+
+</body>
+</html>
