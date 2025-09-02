@@ -187,3 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setThumbBackground(thumb, thumbByYouTubeId(id));
   });
 });
+// Detail Page 처리
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.work-card[data-detail]');
+  if (!card) return;
+
+  const link = card.getAttribute('data-detail');
+  window.open(link, '_blank', 'noopener');
+});
